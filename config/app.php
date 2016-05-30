@@ -164,8 +164,12 @@ return [
         /*
          * flash session
          */
-        Laracasts\Flash\FlashServiceProvider::class
+        Laracasts\Flash\FlashServiceProvider::class,
 
+        /*
+         * gestion des roles
+         */
+        Zizaco\Entrust\EntrustServiceProvider::class,
     ],
 
     /*
@@ -221,8 +225,15 @@ return [
         /*
          * flash session
          */
-        'Flash' => 'Laracasts\Flash\Flash'
+        'Flash' => 'Laracasts\Flash\Flash',
 
+        /*
+         * gestin des roles
+         */
+        'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
+        'role' => \Zizaco\Entrust\Middleware\EntrustRole::class,
+        'permission' => \Zizaco\Entrust\Middleware\EntrustPermission::class,
+        'ability' => \Zizaco\Entrust\Middleware\EntrustAbility::class,
     ],
 
 ];

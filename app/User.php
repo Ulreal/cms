@@ -3,9 +3,16 @@
 namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Zizaco\Entrust\Traits\EntrustPermissionTrait;
+use Zizaco\Entrust\Traits\EntrustRoleTrait;
+use Zizaco\Entrust\Traits\EntrustUserTrait;
 
 class User extends Authenticatable
 {
+    // ajotue les methodes de la librarie Entrust
+    use EntrustUserTrait;
+    
+
     /**
      * The attributes that are mass assignable.
      *
