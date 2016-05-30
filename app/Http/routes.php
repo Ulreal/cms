@@ -23,4 +23,7 @@ Route::get('/home', 'HomeController@index');
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/chat', ['uses' => 'ChatController@index', 'as' => 'chat.index']);
     Route::post('/chat', ['uses' => 'ChatController@create', 'as' => 'chat.add']);
+    Route::get('/post', ['uses' => 'PostController@index', 'as' => 'post.index']);
+    Route::post('/post', ['uses' => 'PostController@create', 'as' => 'post.add']);
+    Route::get('/post/create', ['uses' => 'PostController@createForm', 'as' => 'post.createForm']);
 });
