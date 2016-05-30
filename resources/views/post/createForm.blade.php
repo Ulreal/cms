@@ -14,7 +14,7 @@
                             {{ Form::text('title', '', ['class' => 'form-control']) }}
                             {{ Form::label('Contenu', 'Contenu du post') }}
                             {{ Form::textarea('content', '', ['class' => 'form-control']) }}
-                            {{ Form::submit('submit!', ['class' => 'btn btn-primary']) }}
+                            {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
                             {{ Form::close() }}
                         </div>
                     </div>

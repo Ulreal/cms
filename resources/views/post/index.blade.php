@@ -17,11 +17,10 @@
                                 </tr>
                                 <tr>
                                     @foreach($posts as $post)
-                                    <td><a href="/{{$post->id}}/view">{{$post->title}}</a></td>
-                                    <td>{{$post->userid}}</td>
-                                    <td>{{$post->created_at}}</td>
-                                @endforeach
-
+                                        <td><a href="/{{$post->id}}/view">{{$post->title}}</a></td>
+                                        <td>{{$post->userid}}</td>
+                                        <td>{{$post->created_at}}</td>
+                                    @endforeach
                                 </tr>
                             </table>
                         </div>
