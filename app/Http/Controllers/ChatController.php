@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Chat;
 use App\Http\Requests;
-use DateInterval;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
@@ -21,7 +20,7 @@ class ChatController extends Controller
         Chat::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->delete();
 
         $chats = Chat::all(); // 'SELECT * FROM Chat' => fetchAll
-        
+
         return view('chat.index', compact(['chats']));
     }
 
