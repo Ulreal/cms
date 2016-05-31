@@ -11,19 +11,22 @@
 |
 */
 
+Route::auth();
+
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::auth();
-
 Route::get('/home', ['uses' => 'HomeController@index', 'as' => 'index']);
 
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::group(['middleware' => 'permission:chat'], function () {
+    Route::group(['middleware' => 'role:admin|chat'], function () {
         Route::get('/chat', ['uses' => 'ChatController@index', 'as' => 'chat.index']);
         Route::post('/chat', ['uses' => 'ChatController@create', 'as' => 'chat.add']);
+    });
+
+    Route::group(['middleware' => 'role:admin|news'], function () {
+        Route::resource('news','NewsController');
     });
 });
