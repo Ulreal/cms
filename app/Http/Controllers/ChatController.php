@@ -14,15 +14,22 @@ class ChatController extends Controller
 {
     public function index() {
 
-        //suppression
+        //Modèle MVC = ici on est dans la partie Controllers
+        //Page accueil du chat
+
+        //Calcul de la durée d'expiration
         $date = new \DateTime();
         $date->modify('-60 minutes');
+
+        //Supprimer les chats qui ont dépassés la durée de vie
         Chat::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->delete();
 
+        //Afficher les autres chats
         $chats = Chat::all(); // 'SELECT * FROM Chat' => fetchAll
         return view('chat.index', compact(['chats']));
     }
 
+    //Création d'un chat
     public function create(Request $request) {
 
         if (!empty($request->input('message'))) {
@@ -37,6 +44,7 @@ class ChatController extends Controller
             Flash::error('Veuillez saisir un message !');
         }
 
+        //Retour à la page d'accueil du chat
         return Redirect::route('chat.index');
     }
 }

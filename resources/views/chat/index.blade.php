@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+//Modèle MVC = ici on est dans la partie Views
+
 @section('content')
     <div class="container">
         <div class="row">
