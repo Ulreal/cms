@@ -19,4 +19,5 @@
 			</div>
 		</div>
 	</div>
+	@include('comments.list')
 @endsection

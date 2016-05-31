@@ -11,7 +11,7 @@ class User extends Authenticatable
 {
     // ajotue les methodes de la librarie Entrust
     use EntrustUserTrait;
-    
+
 
     /**
      * The attributes that are mass assignable.
@@ -39,5 +39,10 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany('App\Post');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
     }
 }

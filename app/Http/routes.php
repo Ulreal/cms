@@ -30,6 +30,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::resource('post', 'PostController');
     });
 
+    Route::group(['middleware' => 'role:admin|forum'], function () {
+        Route::resource('comment', 'CommentController');
+    });
+
     Route::group(['middleware' => 'role:admin|news'], function () {
         Route::resource('news','NewsController');
     });

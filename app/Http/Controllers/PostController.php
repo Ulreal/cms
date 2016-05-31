@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Validator, Input, Redirect, HTML;
+use Auth, Validator, Input, Redirect, HTML, DB;
 use App\Post;
+use App\Comment;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-// use Illuminate\Support\Facades\Redirect;
 use Laracasts\Flash\Flash;
 
 
@@ -21,8 +20,8 @@ class PostController extends Controller
 
     public function store(Request $request) {
         $rules = array(
-            'title'       => 'required|min:4|max:255',
-            'content'      => 'required|min:15|max:500',
+            'title'   => 'required|min:4|max:255',
+            'content' => 'required|min:15|max:500',
         );
 
         $validator = Validator::make(Input::all(), $rules);
@@ -30,8 +29,7 @@ class PostController extends Controller
         // process the login
         if ($validator->fails()) {
             Flash::error('Les champs ne sont pas correctement remplis.');
-            return Redirect::route('post.create')
-                            ->withErrors($validator);
+            return Redirect::route('post.create')->withErrors($validator);
         }else{
             // sauvegarde l'enregistrement
             $post = new Post();
@@ -51,12 +49,8 @@ class PostController extends Controller
     }
 
     public function show($id) {
-        // get the nerd
         $post = Post::findOrFail($id);
-
-        // show the view and pass the nerd to it
-        return view('post.show')
-        ->with('post', $post);
+        return view('post.show')->with('post', $post);
     }
 
     public function edit($id) {
@@ -68,8 +62,8 @@ class PostController extends Controller
     public function update(Request $request, $id) {
 
         $rules = array(
-            'title'       => 'required|min:4|max:255',
-            'content'      => 'required|min:15|max:500',
+            'title'   => 'required|min:4|max:255',
+            'content' => 'required|min:15|max:500',
         );
 
         // $messages = [
@@ -87,7 +81,7 @@ class PostController extends Controller
     if ($validator->fails()) {
         Flash::error('Les champs ne sont pas correctement remplis.');
         return Redirect::route('post.edit', $id)
-        ->withErrors($validator);
+                        ->withErrors($validator);
     } else {
         // sauvegarde l'enregistrement
         $post = Post::findOrFail($id);
@@ -98,14 +92,14 @@ class PostController extends Controller
         Flash::success('Post bien modifié.');
     }
     return Redirect::route('post.index');
-}
+    }
 
-public function destroy($id) {
-    $post = Post::findOrFail($id);
-    $post->delete();
+    public function destroy($id) {
+        $post = Post::findOrFail($id);
+        $post->delete();
 
-    // redirect
-    Flash::success('Le post a bien été supprimé.');
-    return Redirect::route('post.index');
-}
+        // redirect
+        Flash::success('Le post a bien été supprimé.');
+        return Redirect::route('post.index');
+    }
 }
