@@ -40,7 +40,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Société Mickaël & Co.
+                    Société Mickaël &amp; Co.
                 </a>
             </div>
 
@@ -49,6 +49,7 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Accueil</a></li>
                     @if (Auth::check())
+                        <li>{{link_to_route('post.index', 'Forum')}}</li>
                         <li>{{link_to_route('chat.index', 'Chat')}}</li>
                         <li>{{link_to_route('news.index', 'News')}}</li>
                     @endif

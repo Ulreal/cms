@@ -26,6 +26,10 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/chat', ['uses' => 'ChatController@create', 'as' => 'chat.add']);
     });
 
+    Route::group(['middleware' => 'role:admin|forum'], function () {
+        Route::resource('post', 'PostController');
+    });
+
     Route::group(['middleware' => 'role:admin|news'], function () {
         Route::resource('news','NewsController');
     });

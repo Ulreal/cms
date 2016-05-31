@@ -22,7 +22,7 @@
                             {{ Form::label('message', 'Mon message') }}
                             {{ Form::text('message', '', ['class' => 'form-control']) }}
                             <hr>
-                            {{ Form::submit('submit!', ['class' => 'btn btn-primary']) }}
+                            {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
                             {{ Form::close() }}
                         </div>
                     </div>
