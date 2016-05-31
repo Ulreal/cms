@@ -72,7 +72,10 @@ class Handler extends ExceptionHandler
         }
         else
         {
-            return (new SymfonyDisplayer(config('app.debug')))->createResponse($e);
+            return response()->view('errors.500', [
+                'code' => $e->getStatusCode(),
+                'message' => $e->getMessage()
+            ], $e->getStatusCode());
         }
     }
 }

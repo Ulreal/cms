@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\News;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -15,7 +16,8 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.index');
+        $news = News::paginate(2); // 'SELECT * FROM News' => fetchAll
+        return view('news.index', compact(['news']));
     }
 
     /**
@@ -47,7 +49,8 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        //
+        $new = News::findOrFail($id);
+        return view('news.show', compact(['new']));
     }
 
     /**
