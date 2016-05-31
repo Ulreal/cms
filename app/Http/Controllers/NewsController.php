@@ -21,7 +21,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::paginate(2); // 'SELECT * FROM News' => fetchAll
-        return view('news.index', compact(['news'])); //
+        return view('news.index', compact(['news'])); //Create an array from variables and their values
     }
 
     /**
@@ -50,7 +50,7 @@ class NewsController extends Controller
             $new->userid = Auth::user()->id; //récupération en auto (via la class 'Auth', méthode 'user') de l'auteur de la news
             $new->save();
 
-            Flash::success('News bien ajoutée !');
+            Flash::success('News bien ajoutée !'); //class Flash pour gérer un message selon la méthode choisie 'success' ou 'error'
         } else {
             Flash::error('Veuillez saisir un titre & contenu !');
         }
