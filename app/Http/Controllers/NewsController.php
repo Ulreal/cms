@@ -6,9 +6,13 @@ use App\News;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
+use Laracasts\Flash\Flash;
 
 class NewsController extends Controller
 {
+    //Modèle MVC = ici on est dans la partie Controllers
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +21,7 @@ class NewsController extends Controller
     public function index()
     {
         $news = News::paginate(2); // 'SELECT * FROM News' => fetchAll
-        return view('news.index', compact(['news']));
+        return view('news.index', compact(['news'])); //
     }
 
     /**
@@ -27,7 +31,7 @@ class NewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('news.create');
     }
 
     /**
@@ -38,7 +42,21 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if (!empty($request->input('titre')) && !empty($request->input('contenu'))) {
+            // sauvegarde l'enregistrement
+            $new = new News();
+            $new->titre = $request->input('titre');
+            $new->contenu = $request->input('contenu');
+            $new->userid = Auth::user()->id; //récupération en auto (via la class 'Auth', méthode 'user') de l'auteur de la news
+            $new->save();
+
+            Flash::success('News bien ajoutée !');
+        } else {
+            Flash::error('Veuillez saisir un titre & contenu !');
+        }
+
+        //Retour à la page d'accueil de la News
+        return Redirect::route('news.index');
     }
 
     /**
@@ -49,7 +67,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        $new = News::findOrFail($id);
+        $new = News::findOrFail($id); //Récupère en auto (via la class 'News', méthode 'findOrFail') le chat $id
         return view('news.show', compact(['new']));
     }
 

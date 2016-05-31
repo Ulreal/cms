@@ -4,7 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
-                <div class="jumbotron">Bienvenu sur les News!</div>
+
+                {{link_to_route('news.create', 'Ajouter une news', [], ['class' => 'btn btn-primary'])}}
+                <h1>Bienvenu sur les News!</h1>
 
                 @foreach($news as $new)
                 <div class="panel panel-default">
