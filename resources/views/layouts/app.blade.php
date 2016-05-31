@@ -40,7 +40,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Société Mickaël & Co.
+                    Société Mickaël &amp; Co.
                 </a>
             </div>
 

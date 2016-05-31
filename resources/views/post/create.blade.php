@@ -9,6 +9,13 @@
                     <div class="panel-body">
                         Créez votre post
                         <div class="send">
+
+                            @if (count($errors) > 0)
+                                <div class="alert alert-danger">
+                                    {{ HTML::ul($errors->all()) }}
+                                </div>
+                            @endif
+
                             {{ Form::open(['route' => 'post.store']) }}
                             {{ Form::label('Titre', 'Titre du post') }}
                             {{ Form::text('title', '', ['class' => 'form-control']) }}
