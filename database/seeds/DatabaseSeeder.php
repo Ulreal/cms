@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UsersTableSeeder::class);
 
         // https://github.com/micheleangioni/entrust
-        $this->call(PermissionTableSeeder::class);
         $this->call(RoleTableSeeder::class);
     }
 }

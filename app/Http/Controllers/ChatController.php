@@ -12,15 +12,6 @@ use Laracasts\Flash\Flash;
 
 class ChatController extends Controller
 {
-    public function __construct()
-    {
-       /* if (!Auth::user()->can('chat')) {
-            Flash::error("Vous n'avez pas la permission !");
-            Redirect::route('index');
-        }
-       */
-    }
-
     public function index() {
 
         //suppression
@@ -29,7 +20,6 @@ class ChatController extends Controller
         Chat::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->delete();
 
         $chats = Chat::all(); // 'SELECT * FROM Chat' => fetchAll
-
         return view('chat.index', compact(['chats']));
     }
 

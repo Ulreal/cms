@@ -20,28 +20,35 @@ class RoleTableSeeder extends Seeder
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'User',
-            'display_name' => 'User',
-            'description' => "Description du rôle user",
+            'name' => 'chat',
+            'display_name' => 'chat',
+            'description' => "Permet d'utiliser le chat",
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'forum',
+            'display_name' => 'Forum',
+            'description' => "Permet d'utiliser le forum",
+        ]);
+
+        DB::table('roles')->insert([
+            'name' => 'news',
+            'display_name' => 'News',
+            'description' => "Permet d'utiliser les news",
         ]);
 
         /* admin */
         $roleadmin = Role::findOrFail(1);
-        $roleadmin->attachPermission(1);
-        $roleadmin->attachPermission(2);
-        $roleadmin->attachPermission(3);
-        $roleadmin->attachPermission(4);
-
         $admin = User::where('name', '=', 'admin')->first();
         $admin->attachRole($roleadmin);
 
         /* user */
-        $roleuser = Role::findOrFail(2);
-        $roleuser->attachPermission(2);
-        $roleuser->attachPermission(3);
-        $roleuser->attachPermission(4);
-
+        $rolechat = Role::findOrFail(2);
+        $roleforum = Role::findOrFail(3);
+        $rolenews = Role::findOrFail(4);
         $user = User::where('name', '=', 'user')->first();
-        $user->attachRole($roleuser);
+        $user->attachRole($rolechat);
+        $user->attachRole($roleforum);
+        $user->attachRole($rolenews);
     }
 }
