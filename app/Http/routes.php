@@ -48,5 +48,13 @@ View::composer('*', function($view)
     foreach (\App\Config::all() as $row) {
         $tmp[$row->key] = $row->value;
     }
+
     $view->with('Config', $tmp);
+
+    $result = 6;
+    if ($tmp['menu_gauche'] != 'true')
+        $result += 3;
+    if ($tmp['menu_droite'] != 'true')
+        $result += 3;
+    $view->with('size_content', $result);
 });

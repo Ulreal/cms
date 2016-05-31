@@ -85,10 +85,8 @@
 
     <div class="container">
         <div class="row">
-
-
-            <div class="col-md-3">
-                @if ($Config['menu_gauche'] == 'true')
+            @if ($Config['menu_gauche'] == 'true')
+                <div class="col-md-3">
                     <div class="sidebar-module">
                         <h4>Partner</h4>
                         <ol class="list-unstyled">
@@ -96,13 +94,13 @@
                             <li><a href="http://www.instic.fr/">Instic</a></li>
                         </ol>
                     </div>
-                @endif
-            </div>
-            <div class="col-md-6">
+                </div>
+            @endif
+            <div class="col-md-{{$size_content}}">
                 @yield('content')
             </div>
-            <div class="col-md-3">
-                @if ($Config['menu_droite'] == 'true')
+            @if ($Config['menu_droite'] == 'true')
+                <div class="col-md-3">
                     <div class="sidebar-module">
                         <h4>Social Network</h4>
                         <ol class="list-unstyled">
@@ -110,8 +108,8 @@
                             <li><a href="http://twitter.com">Twitter</a></li>
                         </ol>
                     </div>
-                @endif
-            </div>
+                </div>
+            @endif
         </div>
     </div>
 
