@@ -13,12 +13,6 @@ use Laracasts\Flash\Flash;
 class PostController extends Controller
 {
     public function index() {
-
-        //suppression
-        $date = new \DateTime();
-        $date->modify('-60 minutes');
-        Post::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->delete();
-
         $posts = Post::all();
 
         return view('post.index', compact(['posts']));
@@ -37,12 +31,24 @@ class PostController extends Controller
             Flash::success('Post bien ajouté.');
         } else {
             Flash::error('Veuillez remplir tous les champs.');
+            return view('post.create');
         }
 
         return Redirect::route('post.index');
     }
 
     public function createForm(Request $request) {
-		return view('post.createForm');
+		return view('post.create');
+    }
+
+    public function show(Request $request, $id) {
+
+    }
+
+    public function edit(Request $request) {
+    }
+
+    public function delete(Request $request) {
+
     }
 }
