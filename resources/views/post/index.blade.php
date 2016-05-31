@@ -17,13 +17,16 @@
                                 </tr>
                                 @foreach($posts as $post)
                                     <tr>
-                                        <td>{{ link_to_route('post.view', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
+                                        <td>{{ link_to_route('post.show', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
                                         <td>{{ $post->user->name }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>
                                             @if (Auth::user()->id === $post->userid)
-                                                {{ link_to_route('post.edit','Éditer', ['id' => $post->id], ['class' => 'btn btn-warning']) }}
-                                                {{ link_to_route('post.delete','Supprimer', ['id' => $post->id], ['class' => 'btn btn-danger']) }}
+                                                {{ link_to_route('post.edit','Éditer', ['id' => $post->id], ['style' => 'float: left; margin-right: 10px;', 'class' => 'btn btn-warning']) }}
+                                                {{-- {{ link_to_route('post.destroy','Supprimer', ['id' => $post->id], ['class' => 'btn btn-danger']) }} --}}
+                                                {{ Form::model($post, ['route' => ['post.destroy', $post->id], 'method' => 'DELETE']) }}
+                                                {{ Form::submit('Supprimer', ['class' => 'btn btn-danger']) }}
+                                                {{ Form::close() }}
                                             @else
                                                 <i style="color:silver;">Aucune</i>
                                             @endif

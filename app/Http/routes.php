@@ -26,10 +26,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('/chat', ['uses' => 'ChatController@create', 'as' => 'chat.add']);
 
     //Post
-    Route::get('/post', ['uses' => 'PostController@index', 'as' => 'post.index']);
-    Route::post('/post', ['uses' => 'PostController@create', 'as' => 'post.add']);
-    Route::get('/post/create', ['uses' => 'PostController@createForm', 'as' => 'post.create']);
-    Route::get('/post/{id}/delete', ['uses' => 'PostController@delete', 'as' => 'post.delete']);
-    Route::get('/post/{id}/edit', ['uses' => 'PostController@edit', 'as' => 'post.edit']);
-    Route::get('/post/{id}/view', ['uses' => 'PostController@view', 'as' => 'post.view']);
+    // Route::get('/post', ['uses' => 'PostController@index', 'as' => 'post.index']);
+    // Route::post('/post', ['uses' => 'PostController@create', 'as' => 'post.add']);
+    // Route::get('/post/create', ['uses' => 'PostController@createForm', 'as' => 'post.create']);
+    // Route::get('/post/{id}/delete', ['uses' => 'PostController@delete', 'as' => 'post.delete']);
+    // Route::get('/post/{id}/edit', ['uses' => 'PostController@edit', 'as' => 'post.edit']);
+    // Route::get('/post/{id}/view', ['uses' => 'PostController@view', 'as' => 'post.view']);
+    Route::resource('post', 'PostController');
 });
