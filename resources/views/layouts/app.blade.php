@@ -13,17 +13,7 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
+    {!! HTML::style('css/app.css') !!}
 </head>
 <body id="app-layout">
     <nav class="navbar navbar-default navbar-static-top">
@@ -46,14 +36,20 @@
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
+                @if ($Config['menu_header'] == 'true')
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url('/home') }}">Accueil</a></li>
                     @if (Auth::check())
                         <li>{{link_to_route('post.index', 'Forum')}}</li>
                         <li>{{link_to_route('chat.index', 'Chat')}}</li>
                         <li>{{link_to_route('news.index', 'News')}}</li>
+
+                        @if (Entrust::hasRole('admin'))
+                            <li>{{link_to('admin/config', 'Administration')}}</li>
+                        @endif
                     @endif
                 </ul>
+                @endif
 
                 <!-- Right Side Of Navbar -->
                 <ul class="nav navbar-nav navbar-right">
@@ -87,9 +83,21 @@
         </div>
     @endif
 
-
-
     @yield('content')
+
+    @if ($Config['menu_footer'] == 'true')
+        <footer class="footer">
+            <div class="container">
+                <p class="text-muted">
+                    @if (!empty($Config['text_footer']))
+                        {{$Config['text_footer']}}
+                    @else
+                        Copyright © 2016
+                    @endif
+                </p>
+            </div>
+        </footer>
+    @endif
 
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>

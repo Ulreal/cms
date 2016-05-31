@@ -24,7 +24,7 @@
 							<div class="form-group">
                             {{ Form::label('Contenu', 'Contenu du post') }}
                             {{ Form::textarea('content', null, ['class' => 'form-control']) }}
-						</div>
+						    </div>
                             {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
                             {{ Form::close() }}
                         </div>

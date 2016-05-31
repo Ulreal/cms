@@ -18,7 +18,7 @@
                             </ul>
                         </div>
                         <div class="send">
-                            {{ Form::open(['route' => 'chat.add']) }}
+                            {{ Form::open(['route' => 'chat.add']) }} {{--Class foram, méthode open et requette 'oute' et lien 'chat.add'--}}
                             {{ Form::label('message', 'Mon message') }}
                             {{ Form::text('message', '', ['class' => 'form-control']) }}
                             <hr>

@@ -33,4 +33,20 @@ Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => 'role:admin|news'], function () {
         Route::resource('news','NewsController');
     });
+
+    Route::group(['middleware' => 'role:admin', 'prefix' => 'admin'], function () {
+        Route::get('config', ['uses' => 'Administration\ConfigController@index', 'as' => 'admin.config.index']);
+        Route::get('config/edit', ['uses' => 'Administration\ConfigController@edit', 'as' => 'admin.config.modify']);
+        Route::post('config/{id}/edit', ['uses' => 'Administration\ConfigController@update', 'as' => 'admin.config.update']);
+        Route::post('config', ['uses' => 'Administration\ConfigController@create', 'as' => 'admin.config.create']);
+    });
+});
+
+View::composer('*', function($view)
+{
+    $tmp = [];
+    foreach (\App\Config::all() as $row) {
+        $tmp[$row->key] = $row->value;
+    }
+    $view->with('Config', $tmp);
 });
