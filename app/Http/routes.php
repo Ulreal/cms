@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('config/edit', ['uses' => 'Administration\ConfigController@edit', 'as' => 'admin.config.modify']);
         Route::post('config/{id}/edit', ['uses' => 'Administration\ConfigController@update', 'as' => 'admin.config.update']);
         Route::post('config', ['uses' => 'Administration\ConfigController@create', 'as' => 'admin.config.create']);
+
+        Route::resource('forum', 'Administration\ForumController');
     });
 });
 

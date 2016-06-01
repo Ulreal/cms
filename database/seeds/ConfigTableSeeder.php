@@ -17,6 +17,7 @@ class ConfigTableSeeder extends Seeder
             ['key' => 'menu_droite', 'value' => 'true'],
             ['key' => 'menu_footer', 'value' => 'true'],
             ['key' => 'text_footer', 'value' => 'Réalisé par JB Hénard, Quentin Bettoum et Villers Mickaël'],
+            ['key' => 'theme', 'value' => 'theme0'],
         ];
 
         foreach ($default_settings as $setting) {

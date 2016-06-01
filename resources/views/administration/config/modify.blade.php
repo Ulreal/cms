@@ -11,7 +11,7 @@
             {{ Form::model($config, ['route' => ['admin.config.update', $config->id]]) }}
             <div class="form-group">
                 {{ Form::label('key', 'Key') }}
-                {{ Form::text('key', null, ['class' => 'form-control']) }}
+                {{ Form::text('key', null, ['class' => 'form-control', 'disabled']) }}
             </div>
             <div class="form-group">
                 {{ Form::label('value', 'La valeur') }}

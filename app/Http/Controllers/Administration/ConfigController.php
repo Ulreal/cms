@@ -30,7 +30,7 @@ class ConfigController extends Controller
 
 
 
-        $grid->edit('/admin/config/edit', 'Edit','modify|delete');
+        $grid->edit('/admin/config/edit', 'Edit','modify');
         $grid->orderBy('id','asc');
         $grid->paginate(10);
 
@@ -105,7 +105,7 @@ class ConfigController extends Controller
     public function update(Request $request, $id)
     {
         $config = Config::findOrFail($id);
-        $config->key = $request->input('key');
+        //$config->key = $request->input('key');
         $config->value = $request->input('value');
         $config->save();
         Flash::success('Configuration bien modifiée!');

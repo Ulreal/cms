@@ -12,7 +12,24 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700">
 
     <!-- Styles -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <?php
+        if (isset($Config['theme'])) {
+            switch($Config['theme']) {
+                case 'theme1': $theme = 'https://bootswatch.com/cerulean/bootstrap.min.css'; break;
+                case 'theme2': $theme = 'https://bootswatch.com/cosmo/bootstrap.min.css'; break;
+                case 'theme3': $theme = 'https://bootswatch.com/flatly/bootstrap.min.css'; break;
+                case 'theme4': $theme = 'https://bootswatch.com/united/bootstrap.min.css'; break;
+                case 'theme5': $theme = 'https://bootswatch.com/simplex/bootstrap.min.css'; break;
+                case 'theme6': $theme = 'https://bootswatch.com/darkly/bootstrap.min.css'; break;
+
+                default: $theme = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'; break;
+            }
+        } else {
+            $theme = 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css';
+        }
+    ?>
+
+    <link rel="stylesheet" href="{{$theme}}" >
     {!! HTML::style('css/app.css') !!}
 </head>
 <body id="app-layout">
@@ -45,7 +62,18 @@
                         <li>{{link_to_route('news.index', 'News')}}</li>
 
                         @if (Entrust::hasRole('admin'))
-                            <li>{{link_to('admin/config', 'Administration')}}</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                Administration <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="{{route('admin.config.index')}}">Configurations</a></li>
+                                <li><a href="{{route('admin.forum.index')}}">Forum</a></li>
+                                <li><a href="{{route('admin.config.index')}}">Chat</a></li>
+                                <li><a href="{{route('admin.config.index')}}">News</a></li>
+                            </ul>
+                        </li>
                         @endif
                     @endif
                 </ul>
