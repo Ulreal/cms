@@ -22,13 +22,9 @@
                                         <td>{{ $post->created_at }}</td>
                                         <td>
                                             @if (Auth::user()->id === $post->userid)
-                                                {{ link_to_route('post.edit', '', ['id' => $post->id], ['style' => 'float: left; margin-right: 10px;text-decoration: none;', 'class' => 'glyphicon glyphicon-pencil']) }}
-                                                {{-- Link to submit the hidden form --}}
-                                                {{ HTML::link('#', '', array('id' => 'deletePostLink'.$post->id, 'style' => 'text-decoration: none;', 'class' => 'glyphicon glyphicon-trash', 'onClick' => 'submitDeletePost('.$post->id.');'))}}
-
-                                                {{-- Hidden Form --}}
-                                                {{ Form::model($post, ['route' => ['post.destroy', $post->id], 'method' => 'DELETE', 'style' => 'display:none;']) }}
-                                                {{ Form::submit('', ['class' => 'glyphicon glyphicon-trash']) }}
+                                                {{ link_to_route('post.edit', '', ['id' => $post->id], ['style' => 'float: left;padding: 2px;margin-right: 10px;text-decoration: none;', 'class' => 'glyphicon glyphicon-pencil']) }}
+                                                {{ Form::model($post, ['route' => ['post.destroy', $post->id], 'method' => 'DELETE']) }}
+                                                <button class="btn btn-link" style='float:left;float: left;padding: 0px;' type="submit"><i class="glyphicon glyphicon-trash"></i></button>
                                                 {{ Form::close() }}
                                             @else
                                                 <i style="color:silver;">Aucune</i>
