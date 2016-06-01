@@ -14,14 +14,14 @@
                     </tr>
                     @foreach($posts as $post)
                         <tr>
-                            <td style="max-width: 250px;word-wrap: break-word;word-break: normal;">{{ link_to_route('post.show', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
+                            <td style="max-width: 250px;word-wrap: break-word;word-break: normal;">{{ link_to_route('post.show', $post->title, ['id' => $post->id]) }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>{{ $post->created_at }}</td>
                             <td>
-                                @if (Auth::user()->id === $post->userid)
-                                    {{ link_to_route('post.edit', '', ['id' => $post->id], ['style' => 'float: left;padding: 2px;margin-right: 10px;text-decoration: none;', 'class' => 'glyphicon glyphicon-pencil']) }}
+                                @if (Auth::user()->id === $post->userid || Entrust::hasRole('admin'))
+                                    {{ link_to_route('post.edit', '', ['id' => $post->id], ['title' => 'Éditer le post', 'style' => 'float: left;padding: 2px;margin-right: 10px;text-decoration: none;', 'class' => 'glyphicon glyphicon-pencil']) }}
                                     {{ Form::model($post, ['route' => ['post.destroy', $post->id], 'method' => 'DELETE']) }}
-                                    <button class="btn btn-link" style='float:left;float: left;padding: 0px;' type="submit"><i class="glyphicon glyphicon-trash"></i></button>
+                                    <button title="Supprimer le post" class="btn btn-link" style='float:left;padding: 0px;' type="submit"><i class="glyphicon glyphicon-trash"></i></button>
                                     {{ Form::close() }}
                                 @else
                                     <i style="color:silver;">Aucune</i>

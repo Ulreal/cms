@@ -75,9 +75,10 @@ class CommentController extends Controller
 
     public function destroy($id) {
         $comment = Comment::findOrFail($id);
+        $postId = $comment->postid;
         $comment->delete();
-
-        Flash::success('Le comment a bien été supprimé.');
-        return Redirect::route('comment.index');
+        
+        Flash::success('Le commentaire a bien été supprimé.');
+        return Redirect::route('post.show', $postId);
     }
 }

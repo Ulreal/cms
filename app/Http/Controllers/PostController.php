@@ -60,8 +60,8 @@ class PostController extends Controller
     public function update(Request $request, $id) {
 
         $rules = array(
-            'title'   => 'required|min:4|max:255',
-            'content' => 'required|min:15|max:500',
+            'title'   => 'required|min:4|max:155',
+            'content' => 'required|min:15|max:1500',
         );
 
         // $messages = [
