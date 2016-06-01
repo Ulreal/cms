@@ -20,18 +20,16 @@ class PostController extends Controller
 
     public function store(Request $request) {
         $rules = array(
-            'title'   => 'required|min:4|max:255',
-            'content' => 'required|min:15|max:500',
+            'title'   => 'required|min:4|max:155',
+            'content' => 'required|min:15|max:1500',
         );
 
         $validator = Validator::make(Input::all(), $rules);
 
-        // process the login
         if ($validator->fails()) {
             Flash::error('Les champs ne sont pas correctement remplis.');
             return Redirect::route('post.create')->withErrors($validator);
         }else{
-            // sauvegarde l'enregistrement
             $post = new Post();
             $post->title = $request->input('title');
             $post->content = $request->input('content');
@@ -77,17 +75,14 @@ class PostController extends Controller
 
     $validator = Validator::make(Input::all(), $rules /*$messages*/);
 
-    // process the login
     if ($validator->fails()) {
         Flash::error('Les champs ne sont pas correctement remplis.');
-        return Redirect::route('post.edit', $id)
-                        ->withErrors($validator);
+        return Redirect::route('post.edit', $id)->withErrors($validator);
     } else {
-        // sauvegarde l'enregistrement
         $post = Post::findOrFail($id);
         $post->title = Input::get('title');
         $post->content = Input::get('content');
-        $post->userid = Auth::user()->id;
+        // $post->userid = Auth::user()->id;
         $post->save();
         Flash::success('Post bien modifié.');
     }
@@ -98,7 +93,6 @@ class PostController extends Controller
         $post = Post::findOrFail($id);
         $post->delete();
 
-        // redirect
         Flash::success('Le post a bien été supprimé.');
         return Redirect::route('post.index');
     }

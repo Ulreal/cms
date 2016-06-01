@@ -17,15 +17,18 @@
                                 </tr>
                                 @foreach($posts as $post)
                                     <tr>
-                                        <td>{{ link_to_route('post.show', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
+                                        <td style="max-width: 250px;word-wrap: break-word;word-break: normal;">{{ link_to_route('post.show', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
                                         <td>{{ $post->user->name }}</td>
                                         <td>{{ $post->created_at }}</td>
                                         <td>
                                             @if (Auth::user()->id === $post->userid)
-                                                {{ link_to_route('post.edit','Éditer', ['id' => $post->id], ['style' => 'float: left; margin-right: 10px;', 'class' => 'btn btn-warning']) }}
-                                                {{-- {{ link_to_route('post.destroy','Supprimer', ['id' => $post->id], ['class' => 'btn btn-danger']) }} --}}
-                                                {{ Form::model($post, ['route' => ['post.destroy', $post->id], 'method' => 'DELETE']) }}
-                                                {{ Form::submit('Supprimer', ['class' => 'btn btn-danger']) }}
+                                                {{ link_to_route('post.edit', '', ['id' => $post->id], ['style' => 'float: left; margin-right: 10px;text-decoration: none;', 'class' => 'glyphicon glyphicon-pencil']) }}
+                                                {{-- Link to submit the hidden form --}}
+                                                {{ HTML::link('#', '', array('id' => 'deletePostLink'.$post->id, 'style' => 'text-decoration: none;', 'class' => 'glyphicon glyphicon-trash', 'onClick' => 'submitDeletePost('.$post->id.');'))}}
+
+                                                {{-- Hidden Form --}}
+                                                {{ Form::model($post, ['route' => ['post.destroy', $post->id], 'method' => 'DELETE', 'style' => 'display:none;']) }}
+                                                {{ Form::submit('', ['class' => 'glyphicon glyphicon-trash']) }}
                                                 {{ Form::close() }}
                                             @else
                                                 <i style="color:silver;">Aucune</i>
@@ -34,11 +37,18 @@
                                     </tr>
                                 @endforeach
                             </table>
-                            {{ link_to_route('post.create','Ajouter un post', [], ['class' => 'btn btn-primary']) }}
+                            {{ link_to_route('post.create', 'Ajouter un post', [], ['class' => 'btn btn-primary']) }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+    function submitDeletePost(postId) {
+        if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+            $('#deletePostLink'+postId).parent().find('form').submit();
+        }
+    }
+    </script>
 @endsection

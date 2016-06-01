@@ -24,7 +24,6 @@ class CommentController extends Controller
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails()) {
-            // Flash::error('Veuillez mettre un commentaire comprenant entre 5 et 255 caractères');
             return Redirect::route('post.show', $request->input('postid'))->withErrors($validator);
         }else{
             $comment = new Comment();
