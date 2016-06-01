@@ -16,5 +16,8 @@ class DatabaseSeeder extends Seeder
 
         // https://github.com/micheleangioni/entrust
         $this->call(RoleTableSeeder::class);
+
+        // seed des configuration
+        $this->call(ConfigTableSeeder::class);
     }
 }

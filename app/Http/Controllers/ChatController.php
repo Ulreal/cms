@@ -25,7 +25,7 @@ class ChatController extends Controller
         Chat::where('created_at', '<=', $date->format('Y-m-d H:i:s'))->delete();
 
         //Afficher les autres chats
-        $chats = Chat::all(); // 'SELECT * FROM Chat' => fetchAll
+        $chats = Chat::orderBy('created_at', 'desc')->get(); // 'SELECT * FROM Chat' => fetchAll
         return view('chat.index', compact(['chats']));
     }
 

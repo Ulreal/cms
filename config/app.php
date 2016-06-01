@@ -170,6 +170,11 @@ return [
          * gestion des roles
          */
         Zizaco\Entrust\EntrustServiceProvider::class,
+        
+        /*
+         * génére un crud automatique pour l'adminstration
+         */
+        Zofe\Rapyd\RapydServiceProvider::class
     ],
 
     /*

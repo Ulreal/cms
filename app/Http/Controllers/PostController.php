@@ -73,20 +73,20 @@ class PostController extends Controller
         //     'content.min' => 'Votre :attribute doit faire au minimum :min caractères',
         // ];
 
-    $validator = Validator::make(Input::all(), $rules /*$messages*/);
+        $validator = Validator::make(Input::all(), $rules /*$messages*/);
 
-    if ($validator->fails()) {
-        Flash::error('Les champs ne sont pas correctement remplis.');
-        return Redirect::route('post.edit', $id)->withErrors($validator);
-    } else {
-        $post = Post::findOrFail($id);
-        $post->title = Input::get('title');
-        $post->content = Input::get('content');
-        // $post->userid = Auth::user()->id;
-        $post->save();
-        Flash::success('Post bien modifié.');
-    }
-    return Redirect::route('post.index');
+        if ($validator->fails()) {
+            Flash::error('Les champs ne sont pas correctement remplis.');
+            return Redirect::route('post.edit', $id)->withErrors($validator);
+        } else {
+            $post = Post::findOrFail($id);
+            $post->title = Input::get('title');
+            $post->content = Input::get('content');
+            // $post->userid = Auth::user()->id;
+            $post->save();
+            Flash::success('Post bien modifié.');
+        }
+        return Redirect::route('post.index');
     }
 
     public function destroy($id) {
