@@ -46,7 +46,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ route('index') }}">
                     Société Mickaël &amp; Co.
                 </a>
             </div>
@@ -55,7 +55,7 @@
                 <!-- Left Side Of Navbar -->
                 @if ($Config['menu_header'] == 'true')
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Accueil</a></li>
+                    <li>{{link_to_route('index', 'Home')}}</li>
                     @if (Auth::check())
                         <li>{{link_to_route('post.index', 'Forum')}}</li>
                         <li>{{link_to_route('chat.index', 'Chat')}}</li>
@@ -70,8 +70,8 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="{{route('admin.config.index')}}">Configurations</a></li>
                                 <li><a href="{{route('admin.forum.index')}}">Forum</a></li>
-                                <li><a href="{{route('admin.config.index')}}">Chat</a></li>
-                                <li><a href="{{route('admin.config.index')}}">News</a></li>
+                                <li><a href="{{route('admin.news.index')}}">News</a></li>
+                                <li><a href="{{route('admin.users.index')}}">Users</a></li>
                             </ul>
                         </li>
                         @endif

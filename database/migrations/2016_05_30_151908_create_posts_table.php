@@ -22,8 +22,8 @@ class CreatePostsTable extends Migration
 
         Schema::table('posts', function(Blueprint $table) {
             $table->foreign('userid')->references('id')->on('users')
-                ->onDelete('restrict')
-                ->onUpdate('restrict');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

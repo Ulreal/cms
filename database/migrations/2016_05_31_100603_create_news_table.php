@@ -22,8 +22,8 @@ class CreateNewsTable extends Migration
 
         Schema::table('news', function(Blueprint $table) {
             $table->foreign('userid')->references('id')->on('users')
-                ->onDelete('restrict')
-                ->onUpdate('restrict');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

@@ -14,8 +14,8 @@ class CreateForeignKeys extends Migration
     {
         Schema::table('chats', function(Blueprint $table) {
             $table->foreign('userid')->references('id')->on('users')
-                ->onDelete('restrict')
-                ->onUpdate('restrict');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
 
         // Create table for associating roles to users (Many-to-Many)

@@ -6,7 +6,11 @@
         <div class="panel-heading">Dashboard</div>
 
         <div class="panel-body">
-            You are logged in!
+            @if (Auth::guest())
+                Welcome
+            @else
+                You are logged in!
+            @endif
         </div>
     </div>
 
