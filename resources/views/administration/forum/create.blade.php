@@ -16,10 +16,10 @@
                 {{ Form::open(['route' => 'admin.forum.store']) }}
 
                 {{ Form::label('Titre', 'Titre du post') }}
-                {{ Form::text('title', '', ['class' => 'form-control']) }}
+                {{ Form::text('title', '', ['class' => 'form-control', 'minlength'=> '5', 'maxlength' => '155' ]) }}
 
                 {{ Form::label('Contenu', 'Contenu du post') }}
-                {{ Form::textarea('content', '', ['class' => 'form-control']) }}
+                {{ Form::textarea('content', '', ['class' => 'form-control', 'minlength'=> '15', 'maxlength' => '1500' ]) }}
 
                 {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
                 {{ Form::close() }}
