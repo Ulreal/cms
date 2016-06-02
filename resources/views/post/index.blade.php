@@ -7,6 +7,8 @@
             <div class="post">
                 <table class="table">
                     <thead>
+                        {!! $posts->links() !!}
+
                         <tr>
                             <th>Titre du post</th>
                             <th>Créé par</th>
@@ -36,10 +38,28 @@
 
 
                 </table>
-                {{ link_to_route('post.create', 'Ajouter un post', [], ['style' => 'float: right; margin: 21px 0px;', 'class' => 'btn btn-primary']) }}
+                {{ link_to_route('post.create', 'Ajouter un post', [], ['class' => 'addPostButton btn btn-primary']) }}
 
-                {!! $posts->links() !!}
             </div>
         </div>
     </div>
+    <style>
+    .pagination {
+        margin:0px!important;
+    }
+    @media screen and (max-width: 400px) and (min-width: 300px) {
+        .panel-body {
+            padding: 0;
+        }
+        .pagination {
+            margin:5px!important;
+        }
+        .addPostButton {
+            margin: 10px auto!important;
+            display: block;
+            width: 70%;
+            float:none!important;
+        }
+    }
+    </style>
 @endsection
