@@ -30,7 +30,10 @@
                         </tr>
                     @endforeach
                 </table>
-                {{ link_to_route('post.create', 'Ajouter un post', [], ['class' => 'btn btn-primary']) }}
+                {{ link_to_route('post.create', 'Ajouter un post', [], ['style' => 'float: right; margin: 21px 0px;', 'class' => 'btn btn-primary']) }}
+                <div style="">
+                {!! $posts->links() !!}
+            </div>
             </div>
         </div>
     </div>

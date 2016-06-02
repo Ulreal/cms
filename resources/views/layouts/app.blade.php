@@ -46,10 +46,7 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ route('index') }}">
-                    {{--Société Mickaël &amp; Co.--}}
-                    <img src="{{asset('images/logo.png')}}" alt="Photo QJBM" />
-                </a>
+                {{link_to_route('index', 'QJBM',[], ['class' =>'navbar-brand'])}}
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
