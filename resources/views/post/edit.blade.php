@@ -16,11 +16,11 @@
                 {{ Form::model($post, ['route' => ['post.update', $post->id], 'method' => 'PUT']) }}
                 <div class="form-group">
                 {{ Form::label('Titre', 'Titre du post') }}
-                {{ Form::text('title', null, ['class' => 'form-control']) }}
+                {{ Form::text('title', null, ['required' => '', 'maxlength' => '155', 'class' => 'form-control']) }}
                 </div>
                 <div class="form-group">
                 {{ Form::label('Contenu', 'Contenu du post') }}
-                {{ Form::textarea('content', null, ['class' => 'form-control']) }}
+                {{ Form::textarea('content', null, ['required' => '', 'maxlength' => '1500', 'class' => 'form-control']) }}
                 </div>
                 {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
                 {{ Form::close() }}

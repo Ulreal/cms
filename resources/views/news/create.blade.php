@@ -7,11 +7,11 @@
     {{ Form::open(['route' => 'news.store']) }}
 
     {{ Form::label('titre', 'titre de la news') }}
-    {{ Form::text('titre', '', ['class' => 'form-control']) }}
+    {{ Form::text('titre', '', ['required' => '', 'class' => 'form-control']) }}
 
     {{ Form::label('contenu', 'saisir votre news') }}
-    {{ Form::textarea('contenu', '', ['class' => 'form-control']) }}
+    {{ Form::textarea('contenu', '', ['required' => '', 'class' => 'form-control']) }}
 
-    {{ Form::submit('submit!', ['class' => 'btn btn-primary']) }}
+    {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
     {{ Form::close() }}
 @endsection

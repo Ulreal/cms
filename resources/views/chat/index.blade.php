@@ -33,7 +33,7 @@
         <div class="panel-footer">
             {{ Form::open(['route' => 'chat.add']) }} {{--Class foram, méthode open et requette 'oute' et lien 'chat.add'--}}
             <div class="input-group">
-                {{ Form::text('message', '', ['class' => 'form-control input-sm', 'placeholder' => 'Type your message here...']) }}
+                {{ Form::text('message', '', ['required' => '', 'class' => 'form-control input-sm', 'placeholder' => 'Type your message here...']) }}
                 <span class="input-group-btn">
                     {{ Form::submit('Send', ['class' => 'btn btn-warning btn-sm']) }}
                 </span>

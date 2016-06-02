@@ -7,7 +7,6 @@
 				<div class="top-comment-content" style="min-height: 30px;">
 					<p style="float:left;">Par <i>{{ $comment->user->name }}</i> le <i>{{ $comment->created_at }}</i></p>
 					@if (Entrust::hasRole('admin'))
-						{{-- {{ link_to_route('comment.edit', '', ['id' => $post->id], ['style' => 'float: left;padding: 2px;margin-right: 10px;text-decoration: none;', 'class' => 'glyphicon glyphicon-pencil']) }} --}}
 						{{ Form::model($post, ['route' => ['comment.destroy', $comment->id], 'method' => 'DELETE', 'style' => 'float: left; padding-left: 10px;']) }}
 						<button title="Supprimer le commentaire" class="btn btn-link" style='padding: 0px;' type="submit"><i class="glyphicon glyphicon-trash"></i></button>
 						{{ Form::close() }}

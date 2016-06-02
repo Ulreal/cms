@@ -15,10 +15,10 @@
 
                 {{ Form::open(['route' => 'post.store']) }}
                 {{ Form::label('Titre', 'Titre du post') }}
-                {{ Form::text('title', '', ['class' => 'form-control']) }}
+                {{ Form::text('title', '', ['required' => '', 'maxlength' => '155', 'class' => 'form-control']) }}
                 {{ Form::label('Contenu', 'Contenu du post') }}
-                {{ Form::textarea('content', '', ['class' => 'form-control']) }}
-                {{ Form::submit('Envoyer', ['class' => 'btn btn-primary']) }}
+                {{ Form::textarea('content', '', ['required' => '', 'maxlength' => '1500','class' => 'form-control']) }}
+                {{ Form::submit('Envoyer', ['style' => 'margin-top:10px;', 'class' => 'btn btn-primary']) }}
                 {{ Form::close() }}
             </div>
         </div>
