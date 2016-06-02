@@ -6,12 +6,15 @@
         <div class="panel-body">
             <div class="post">
                 <table class="table">
-                    <tr>
-                        <th>Titre du post</th>
-                        <th>Créé par</th>
-                        <th>Date de création</th>
-                        <th>Actions</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th>Titre du post</th>
+                            <th>Créé par</th>
+                            <th>Date de création</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     @foreach($posts as $post)
                         <tr>
                             <td style="max-width: 250px;word-wrap: break-word;word-break: normal;">{{ link_to_route('post.show', $post->title, ['id' => $post->id]) }}</td>
@@ -29,11 +32,13 @@
                             </td>
                         </tr>
                     @endforeach
+                    <tbody/>
+
+
                 </table>
                 {{ link_to_route('post.create', 'Ajouter un post', [], ['style' => 'float: right; margin: 21px 0px;', 'class' => 'btn btn-primary']) }}
-                <div style="">
+
                 {!! $posts->links() !!}
-            </div>
             </div>
         </div>
     </div>
