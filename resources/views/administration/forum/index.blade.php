@@ -14,7 +14,7 @@
                     </tr>
                     @foreach($posts as $post)
                         <tr>
-                            <td>{{ link_to_route('admin.forum.show', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
+                            <td>{{ link_to_route('post.show', $post->title, ['id' => $post->id], ['class' => '']) }}</td>
                             <td>{{ $post->user->name }}</td>
                             <td>{{ $post->created_at }}</td>
                             <td>

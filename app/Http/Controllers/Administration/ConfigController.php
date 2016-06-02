@@ -30,7 +30,7 @@ class ConfigController extends Controller
 
 
 
-        $grid->edit('/admin/config/edit', 'Edit','modify');
+        $grid->edit(url('/admin/config/edit'), 'Edit','modify');
         $grid->orderBy('id','asc');
         $grid->paginate(10);
 

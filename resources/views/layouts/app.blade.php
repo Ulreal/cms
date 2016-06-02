@@ -47,7 +47,8 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ route('index') }}">
-                    Société Mickaël &amp; Co.
+                    {{--Société Mickaël &amp; Co.--}}
+                    <img src="{{asset('images/logo.png')}}" alt="Photo QJBM" />
                 </a>
             </div>
 

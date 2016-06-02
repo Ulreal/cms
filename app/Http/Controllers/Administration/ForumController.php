@@ -33,7 +33,7 @@ class ForumController extends Controller
             Flash::error('Les champs ne sont pas correctement remplis.');
             return Redirect::route('admin.forum.create')
                 ->withErrors($validator);
-        }else{
+        } else {
             // sauvegarde l'enregistrement
             $post = new Post();
             $post->title = $request->input('title');
@@ -42,9 +42,8 @@ class ForumController extends Controller
             $post->save();
 
             Flash::success('Post bien ajouté.');
+            return Redirect::route('admin.forum.index');
         }
-
-        return Redirect::route('admin.forum.index');
     }
 
     public function create(Request $request) {

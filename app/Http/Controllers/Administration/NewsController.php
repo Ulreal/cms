@@ -30,7 +30,7 @@ class NewsController extends Controller
         $grid->add('{{ substr($contenu,0,20) }}...','Contenu');
         $grid->add('user.name','Creator');
 
-        $grid->edit('/admin/news/edit', 'Edit','modify|delete|show');
+        $grid->edit(url('/admin/news/edit'), 'Edit','modify|delete|show');
         $grid->orderBy('id','asc');
         $grid->paginate(10);
 

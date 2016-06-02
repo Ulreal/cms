@@ -1,4 +1,11 @@
 /*
+* logo
+*/
+.navbar-brand > img{
+  margin-top: -8px;
+}
+
+/*
  * Footer
 */
 .footer {

@@ -29,7 +29,7 @@ class PostController extends Controller
         if ($validator->fails()) {
             Flash::error('Les champs ne sont pas correctement remplis.');
             return Redirect::route('post.create')->withErrors($validator);
-        }else{
+        } else {
             $post = new Post();
             $post->title = $request->input('title');
             $post->content = $request->input('content');
@@ -37,9 +37,8 @@ class PostController extends Controller
             $post->save();
 
             Flash::success('Post bien ajouté.');
+            return Redirect::route('post.index');
         }
-
-        return Redirect::route('post.index');
     }
 
     public function create(Request $request) {
